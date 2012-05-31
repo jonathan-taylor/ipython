@@ -142,14 +142,15 @@ have = {}
 
 have['curses'] = test_for('_curses')
 have['matplotlib'] = test_for('matplotlib')
+have['numpy'] = test_for('numpy')
 have['pexpect'] = test_for('IPython.external.pexpect')
 have['pymongo'] = test_for('pymongo')
+have['qt'] = test_for('IPython.external.qt')
+have['rpy2'] = test_for('rpy2')
+have['sqlite3'] = test_for('sqlite3')
+have['tornado'] = test_for('tornado.version_info', (2,1,0), callback=None)
 have['wx'] = test_for('wx')
 have['wx.aui'] = test_for('wx.aui')
-have['qt'] = test_for('IPython.external.qt')
-have['sqlite3'] = test_for('sqlite3')
-
-have['tornado'] = test_for('tornado.version_info', (2,1,0), callback=None)
 
 if os.name == 'nt':
     min_zmq = (2,1,7)
@@ -270,6 +271,10 @@ def make_exclude():
 
     if not have['tornado']:
         exclusions.append(ipjoin('frontend', 'html'))
+
+    if not have['rpy2'] or not have['numpy']:
+        exclusions.append(ipjoin('extensions', 'rmagic'))
+        exclusions.append(ipjoin('extensions', 'tests', 'test_rmagic'))
 
     # This is needed for the reg-exp to match on win32 in the ipdoctest plugin.
     if sys.platform == 'win32':
