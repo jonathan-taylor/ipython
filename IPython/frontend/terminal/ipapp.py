@@ -210,6 +210,9 @@ class TerminalIPythonApp(BaseIPythonApplication, InteractiveShellApp):
         notebook=('IPython.frontend.html.notebook.notebookapp.NotebookApp',
             """Launch the IPython HTML Notebook Server."""
         ),
+        homeworkbook=('IPython.frontend.html.homeworkbook.homeworkbookapp.NotebookApp',
+            """Launch the IPython HTML Homeworkbook Server."""
+        ),
         profile = ("IPython.core.profileapp.ProfileApp",
             "Create and manage IPython profiles."
         ),

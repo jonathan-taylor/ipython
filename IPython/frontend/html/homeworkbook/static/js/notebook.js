@@ -531,8 +531,9 @@ var IPython = (function (IPython) {
         if (this.ncells() === 0 || this.is_valid_cell_index(index)) {
             if (type === 'code') {
                 cell = new IPython.CodeCell(this);
-                cell.set_input_prompt();
-            } else if (type === 'markdown') {
+                // cell.set_input_prompt();
+            } else 
+	    if (type === 'markdown') {
                 cell = new IPython.MarkdownCell(this);
             } else if (type === 'html') {
                 cell = new IPython.HTMLCell(this);
@@ -565,8 +566,9 @@ var IPython = (function (IPython) {
         if (this.ncells() === 0 || this.is_valid_cell_index(index)) {
             if (type === 'code') {
                 cell = new IPython.CodeCell(this);
-                cell.set_input_prompt();
-            } else if (type === 'markdown') {
+//                 cell.set_input_prompt();
+            } else 
+    	    if (type === 'markdown') {
                 cell = new IPython.MarkdownCell(this);
             } else if (type === 'html') {
                 cell = new IPython.HTMLCell(this);
@@ -780,11 +782,11 @@ var IPython = (function (IPython) {
         if (cell.is_splittable()) {
             texta = cell.get_pre_cursor();
             textb = cell.get_post_cursor();
-//             if (cell instanceof IPython.CodeCell) {
-//                 cell.set_text(texta);
-//                 var new_cell = this.insert_cell_below('code');
-//                 new_cell.set_text(textb);
-//             } else 
+            if (cell instanceof IPython.CodeCell) {
+                cell.set_text(texta);
+                var new_cell = this.insert_cell_below('code');
+                new_cell.set_text(textb);
+            } else 
                if (cell instanceof IPython.MarkdownCell) {
                 cell.set_text(texta);
                 cell.render();
@@ -892,7 +894,7 @@ var IPython = (function (IPython) {
                 cells[i].clear_output(true,true,true);
                 // Make all In[] prompts blank, as well
                 // TODO: make this configurable (via checkbox?)
-                cells[i].set_input_prompt();
+                // cells[i].set_input_prompt();
             }
         };
         this.dirty = true;
@@ -951,7 +953,7 @@ var IPython = (function (IPython) {
         // console.log(reply);
         var cell = this.cell_for_msg(reply.parent_header.msg_id);
         if (msg_type === "execute_reply") {
-            cell.set_input_prompt(content.execution_count);
+//             cell.set_input_prompt(content.execution_count);
             cell.element.removeClass("running");
             this.dirty = true;
         } else if (msg_type === "complete_reply") {
@@ -1107,7 +1109,7 @@ var IPython = (function (IPython) {
         var cell_index = that.find_cell_index(cell);
         if (cell instanceof IPython.CodeCell) {
             cell.clear_output(true, true, true);
-            cell.set_input_prompt('*');
+//             cell.set_input_prompt('*');
             cell.element.addClass("running");
             var code = cell.get_text();
 //             var msg_id = that.kernel.execute(cell.get_text());

@@ -23,6 +23,7 @@ var IPython = (function (IPython) {
         this.tooltip_timeout = null;
         this.clear_out_timeout = null;
         IPython.Cell.apply(this, arguments);
+        this.read_only = true; 
     };
 
 
@@ -34,15 +35,15 @@ var IPython = (function (IPython) {
         cell.attr('tabindex','2');
         var input = $('<div></div>').addClass('input hbox');
         input.append($('<div/>').addClass('prompt input_prompt'));
-        var input_area = $('<div/>').addClass('input_area box-flex1');
-        this.code_mirror = CodeMirror(input_area.get(0), {
-            indentUnit : 4,
-            mode: 'python',
-            theme: 'ipython',
-            readOnly: this.read_only,
-            onKeyEvent: $.proxy(this.handle_codemirror_keyevent,this)
-        });
-        input.append(input_area);
+//         var input_area = $('<div/>').addClass('input_area box-flex1');
+//         this.code_mirror = CodeMirror(input_area.get(0), {
+//             indentUnit : 4,
+//             mode: 'python',
+//             theme: 'ipython',
+//             readOnly: true,
+//             onKeyEvent: $.proxy(this.handle_codemirror_keyevent,this)
+//         });
+//         input.append(input_area);
         var output = $('<div></div>').addClass('output vbox');
         cell.append(input).append(output);
         this.element = cell;
@@ -212,7 +213,7 @@ var IPython = (function (IPython) {
             tooltip.removeClass('smalltooltip');
             tooltip.addClass('bigtooltip');
             $('#expanbutton').remove();
-            setTimeout(function(){that.code_mirror.focus();}, 50);
+//             setTimeout(function(){that.code_mirror.focus();}, 50);
         });
         var morelink=$('<a/>').attr('href',"#");
             morelink.attr('role',"button");
@@ -227,7 +228,7 @@ var IPython = (function (IPython) {
             var msg_id = IPython.notebook.kernel.execute(name+"?");
             IPython.notebook.msg_cell_map[msg_id] = IPython.notebook.get_selected_cell().cell_id;
             that.remove_and_cancel_tooltip();
-            setTimeout(function(){that.code_mirror.focus();}, 50);
+//             setTimeout(function(){that.code_mirror.focus();}, 50);
         });
 
         var closelink=$('<a/>').attr('href',"#");
@@ -241,7 +242,7 @@ var IPython = (function (IPython) {
         closelink.append(closespan);
         closelink.click(function(){
             that.remove_and_cancel_tooltip();
-            setTimeout(function(){that.code_mirror.focus();}, 50);
+//             setTimeout(function(){that.code_mirror.focus();}, 50);
             });
         //construct the tooltip
         tooltip.append(closelink);
@@ -252,7 +253,7 @@ var IPython = (function (IPython) {
             tooltip.append(defstring_html);
         }
         tooltip.append(pre);
-        var pos = this.code_mirror.cursorCoords();
+//         var pos = this.code_mirror.cursorCoords();
         tooltip.css('left',pos.x+'px');
         tooltip.css('top',pos.yBot+'px');
         $('body').append(tooltip);
@@ -375,11 +376,11 @@ var IPython = (function (IPython) {
         // update codemirror with the typed text
         prev = matched_text
         var update = function (inserted_text, event) {
-            that.code_mirror.replaceRange(
-                inserted_text,
-                {line: cur.line, ch: (cur.ch-matched_text.length)},
-                {line: cur.line, ch: (cur.ch+prev.length-matched_text.length)}
-            );
+//             that.code_mirror.replaceRange(
+//                 inserted_text,
+//                 {line: cur.line, ch: (cur.ch-matched_text.length)},
+//                 {line: cur.line, ch: (cur.ch+prev.length-matched_text.length)}
+//             );
             prev = inserted_text
             if(event != null){
                 event.stopPropagation();
@@ -390,7 +391,7 @@ var IPython = (function (IPython) {
         var insert = function (selected_text, event) {
             update(selected_text)
             close();
-            setTimeout(function(){that.code_mirror.focus();}, 50);
+//             setTimeout(function(){that.code_mirror.focus();}, 50);
         };
 
         // insert the curent highlited selection and exit
@@ -445,7 +446,7 @@ var IPython = (function (IPython) {
         var select = $('<select/>').attr('multiple','true');
             select.attr('id', 'asyoutypeselect')
             select.attr('size',Math.min(10,matches.length));
-        var pos = this.code_mirror.cursorCoords();
+//         var pos = this.code_mirror.cursorCoords();
 
         // TODO: I propose to remove enough horizontal pixel
         // to align the text later
@@ -547,8 +548,8 @@ var IPython = (function (IPython) {
 
     CodeCell.prototype.select = function () {
         IPython.Cell.prototype.select.apply(this);
-        this.code_mirror.refresh();
-        this.code_mirror.focus();
+//         this.code_mirror.refresh();
+//         this.code_mirror.focus();
         // We used to need an additional refresh() after the focus, but
         // it appears that this has been fixed in CM. This bug would show
         // up on FF when a newly loaded markdown cell was edited.
@@ -557,10 +558,10 @@ var IPython = (function (IPython) {
 
     CodeCell.prototype.select_all = function () {
         var start = {line: 0, ch: 0};
-        var nlines = this.code_mirror.lineCount();
-        var last_line = this.code_mirror.getLine(nlines-1);
-        var end = {line: nlines-1, ch: last_line.length};
-        this.code_mirror.setSelection(start, end);
+//         var nlines = this.code_mirror.lineCount();
+//         var last_line = this.code_mirror.getLine(nlines-1);
+//         var end = {line: nlines-1, ch: last_line.length};
+//         this.code_mirror.setSelection(start, end);
     };
 
 
@@ -802,7 +803,7 @@ var IPython = (function (IPython) {
 
 
     CodeCell.prototype.clear_input = function () {
-        this.code_mirror.setValue('');
+//         this.code_mirror.setValue('');
     };
     
     CodeCell.prototype.flush_clear_timeout = function() {
@@ -842,22 +843,22 @@ var IPython = (function (IPython) {
     CodeCell.prototype.set_input_prompt = function (number) {
         this.input_prompt_number = number;
         var ns = number || "&nbsp;";
-        this.element.find('div.input_prompt').html('In&nbsp;[' + ns + ']:');
+//         this.element.find('div.input_prompt').html('In&nbsp;[' + ns + ']:');
     };
 
 
     CodeCell.prototype.get_text = function () {
-        return this.code_mirror.getValue();
+//         return this.code_mirror.getValue();
     };
 
 
     CodeCell.prototype.set_text = function (code) {
-        return this.code_mirror.setValue(code);
+//         return this.code_mirror.setValue(code);
     };
 
 
     CodeCell.prototype.at_top = function () {
-        var cursor = this.code_mirror.getCursor();
+//         var cursor = this.code_mirror.getCursor();
         if (cursor.line === 0) {
             return true;
         } else {
@@ -867,25 +868,26 @@ var IPython = (function (IPython) {
 
 
     CodeCell.prototype.at_bottom = function () {
-        var cursor = this.code_mirror.getCursor();
-        if (cursor.line === (this.code_mirror.lineCount()-1)) {
-            return true;
-        } else {
-            return false;
-        }
+//         var cursor = this.code_mirror.getCursor();
+//         if (cursor.line === (this.code_mirror.lineCount()-1)) {
+//             return true;
+//         } else {
+//             return false;
+//         }
+	return true;
     };
 
 
     CodeCell.prototype.fromJSON = function (data) {
         if (data.cell_type === 'code') {
-            if (data.input !== undefined) {
-                this.set_text(data.input);
-            }
-            if (data.prompt_number !== undefined) {
-                this.set_input_prompt(data.prompt_number);
-            } else {
-                this.set_input_prompt();
-            };
+//             if (data.input !== undefined) {
+//                 this.set_text(data.input);
+//             }
+//             if (data.prompt_number !== undefined) {
+//                 this.set_input_prompt(data.prompt_number);
+//             } else {
+//                 this.set_input_prompt();
+//             };
             var len = data.outputs.length;
             for (var i=0; i<len; i++) {
                 // append with dynamic=false.
