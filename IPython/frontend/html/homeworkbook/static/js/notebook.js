@@ -119,24 +119,25 @@ var IPython = (function (IPython) {
                 that.delete_cell();
                 that.control_key_active = false;
                 return false;
-            } else if (event.which === 65 && that.control_key_active) {
-                // Insert code cell above selected = a
-                that.insert_cell_above('code');
-                that.control_key_active = false;
-                return false;
-            } 
-	    else if (event.which === 66 && that.control_key_active) {
-                // Insert code cell below selected = b
-                that.insert_cell_below('code');
-                that.control_key_active = false;
-                return false;
-            } 
-	    else if (event.which === 89 && that.control_key_active) {
-                // To code = y
-                that.to_code();
-                that.control_key_active = false;
-                return false;
-            } 
+            }//  else if (event.which === 65 && that.control_key_active) {
+//                 // Insert code cell above selected = a
+//                 that.insert_cell_above('code');
+//                 that.control_key_active = false;
+//                 return false;
+//             }
+	    
+// 	    else if (event.which === 66 && that.control_key_active) {
+//                 // Insert code cell below selected = b
+//                 that.insert_cell_below('code');
+//                 that.control_key_active = false;
+//                 return false;
+//             } 
+// 	    else if (event.which === 89 && that.control_key_active) {
+//                 // To code = y
+//                 that.to_code();
+//                 that.control_key_active = false;
+//                 return false;
+//             } 
 	    else if (event.which === 77 && that.control_key_active) {
                 // To markdown = m
                 that.to_markdown();
@@ -532,7 +533,8 @@ var IPython = (function (IPython) {
             if (type === 'code') {
                 cell = new IPython.CodeCell(this);
                 // cell.set_input_prompt();
-            } else 
+            } else
+		
 	    if (type === 'markdown') {
                 cell = new IPython.MarkdownCell(this);
             } else if (type === 'html') {
@@ -564,10 +566,10 @@ var IPython = (function (IPython) {
         index = this.index_or_selected(index);
         var cell = null;
         if (this.ncells() === 0 || this.is_valid_cell_index(index)) {
-            if (type === 'code') {
-                cell = new IPython.CodeCell(this);
-//                 cell.set_input_prompt();
-            } else 
+//             if (type === 'code') {
+//                 cell = new IPython.CodeCell(this);
+// //                 cell.set_input_prompt();
+//             } else 
     	    if (type === 'markdown') {
                 cell = new IPython.MarkdownCell(this);
             } else if (type === 'html') {
@@ -782,11 +784,12 @@ var IPython = (function (IPython) {
         if (cell.is_splittable()) {
             texta = cell.get_pre_cursor();
             textb = cell.get_post_cursor();
-            if (cell instanceof IPython.CodeCell) {
-                cell.set_text(texta);
-                var new_cell = this.insert_cell_below('code');
-                new_cell.set_text(textb);
-            } else 
+//             if (cell instanceof IPython.CodeCell) {
+//                 cell.set_text(texta);
+//                 var new_cell = this.insert_cell_below('code');
+//                 new_cell.set_text(textb);
+//             } else
+		
                if (cell instanceof IPython.MarkdownCell) {
                 cell.set_text(texta);
                 cell.render();
@@ -890,12 +893,12 @@ var IPython = (function (IPython) {
         var ncells = this.ncells();
         var cells = this.get_cells();
         for (var i=0; i<ncells; i++) {
-            if (cells[i] instanceof IPython.CodeCell) {
-                cells[i].clear_output(true,true,true);
-                // Make all In[] prompts blank, as well
-                // TODO: make this configurable (via checkbox?)
-                // cells[i].set_input_prompt();
-            }
+//             if (cells[i] instanceof IPython.CodeCell) {
+//                 cells[i].clear_output(true,true,true);
+//                 // Make all In[] prompts blank, as well
+//                 // TODO: make this configurable (via checkbox?)
+//                 // cells[i].set_input_prompt();
+//             }
         };
         this.dirty = true;
     };
@@ -1114,7 +1117,8 @@ var IPython = (function (IPython) {
             var code = cell.get_text();
 //             var msg_id = that.kernel.execute(cell.get_text());
             that.msg_cell_map[msg_id] = cell.cell_id;
-        } else if (cell instanceof IPython.HTMLCell) {
+        } else 
+	    if (cell instanceof IPython.HTMLCell) {
             cell.render();
         }
         if (default_options.terminal) {

@@ -115,18 +115,18 @@ var IPython = (function (IPython) {
             IPython.notebook.insert_cell_below('code');
         });
         // Cell
-        this.element.find('#run_cell').click(function () {
-            IPython.notebook.execute_selected_cell();
-        });
-        this.element.find('#run_cell_in_place').click(function () {
-            IPython.notebook.execute_selected_cell({terminal:true});
-        });
-        this.element.find('#run_all_cells').click(function () {
-            IPython.notebook.execute_all_cells();
-        });
-        this.element.find('#to_code').click(function () {
-            IPython.notebook.to_code();
-        });
+//         this.element.find('#run_cell').click(function () {
+//             IPython.notebook.execute_selected_cell();
+//         });
+//         this.element.find('#run_cell_in_place').click(function () {
+//             IPython.notebook.execute_selected_cell({terminal:true});
+//         });
+//         this.element.find('#run_all_cells').click(function () {
+//             IPython.notebook.execute_all_cells();
+//         });
+//         this.element.find('#to_code').click(function () {
+//             IPython.notebook.to_code();
+//         });
         this.element.find('#to_markdown').click(function () {
             IPython.notebook.to_markdown();
         });
@@ -157,13 +157,13 @@ var IPython = (function (IPython) {
         this.element.find('#clear_all_output').click(function () {
             IPython.notebook.clear_all_output();
         });
-        // Kernel
-        this.element.find('#int_kernel').click(function () {
-            IPython.notebook.kernel.interrupt();
-        });
-        this.element.find('#restart_kernel').click(function () {
-            IPython.notebook.restart_kernel();
-        });
+//         // Kernel
+//         this.element.find('#int_kernel').click(function () {
+//             IPython.notebook.kernel.interrupt();
+//         });
+//         this.element.find('#restart_kernel').click(function () {
+//             IPython.notebook.restart_kernel();
+//         });
         // Help
         this.element.find('#keyboard_shortcuts').click(function () {
             IPython.quick_help.show_keyboard_shortcuts();

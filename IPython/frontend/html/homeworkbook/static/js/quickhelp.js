@@ -26,27 +26,27 @@ var IPython = (function (IPython) {
         var dialog = $('<div/>');
         this.shortcut_dialog = dialog;
         var shortcuts = [
-            {key: 'Shift-Enter', help: 'run cell'},
-            {key: 'Ctrl-Enter', help: 'run cell in-place'},
+//             {key: 'Shift-Enter', help: 'run cell'},
+//             {key: 'Ctrl-Enter', help: 'run cell in-place'},
             {key: 'Ctrl-m x', help: 'cut cell'},
             {key: 'Ctrl-m c', help: 'copy cell'},
             {key: 'Ctrl-m v', help: 'paste cell'},
             {key: 'Ctrl-m d', help: 'delete cell'},
             {key: 'Ctrl-m a', help: 'insert cell above'},
             {key: 'Ctrl-m b', help: 'insert cell below'},
-            {key: 'Ctrl-m o', help: 'toggle output'},
+//             {key: 'Ctrl-m o', help: 'toggle output'},
             {key: 'Ctrl-m l', help: 'toggle line numbers'},
             {key: 'Ctrl-m s', help: 'save notebook'},
             {key: 'Ctrl-m j', help: 'move cell down'},
             {key: 'Ctrl-m k', help: 'move cell up'},
-            {key: 'Ctrl-m y', help: 'code cell'},
+//             {key: 'Ctrl-m y', help: 'code cell'},
             {key: 'Ctrl-m m', help: 'markdown cell'},
-            {key: 'Ctrl-m t', help: 'raw cell'},
+//             {key: 'Ctrl-m t', help: 'raw cell'},
             {key: 'Ctrl-m 1-6', help: 'heading 1-6 cell'},
             {key: 'Ctrl-m p', help: 'select previous'},
             {key: 'Ctrl-m n', help: 'select next'},
-            {key: 'Ctrl-m i', help: 'interrupt kernel'},
-            {key: 'Ctrl-m .', help: 'restart kernel'},
+//             {key: 'Ctrl-m i', help: 'interrupt kernel'},
+//             {key: 'Ctrl-m .', help: 'restart kernel'},
             {key: 'Ctrl-m h', help: 'show keyboard shortcuts'}
         ];
         for (var i=0; i<shortcuts.length; i++) {
