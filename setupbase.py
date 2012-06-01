@@ -142,10 +142,23 @@ def find_package_data():
         for f in files:
             static_data.append(os.path.join(parent, f))
 
+    # walk homeworkbook resources:
+    cwd = os.getcwd()
+    os.chdir(os.path.join('IPython', 'frontend', 'html', 'homeworkbook'))
+    static_walk_hw = list(os.walk('static'))
+    os.chdir(cwd)
+    static_data_hw = []
+    for parent, dirs, files in static_walk_hw:
+        if parent.startswith(excludes):
+            continue
+        for f in files:
+            static_data_hw.append(os.path.join(parent, f))
+
     package_data = {
         'IPython.config.profile' : ['README*', '*/*.py'],
         'IPython.testing' : ['*.txt'],
         'IPython.frontend.html.notebook' : ['templates/*'] + static_data,
+        'IPython.frontend.html.homeworkbook' : ['templates/*'] + static_data_hw,
         'IPython.frontend.qt.console' : ['resources/icon/*.svg'],
     }
     return package_data
