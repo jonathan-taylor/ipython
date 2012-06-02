@@ -141,7 +141,7 @@ class HomeworkMagics(RMagics):
 
         """
        
-        args = parse_argstring(self.MultipleChoiceSetup, line)
+        args = parse_argstring(self.R, line)
         number = args.number
         # First, republish the question
 
