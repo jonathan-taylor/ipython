@@ -141,7 +141,7 @@ class HomeworkMagics(RMagics):
 
         """
        
-        args = parse_argstring(self.R, line)
+        args = parse_argstring(self.MultipleChoiceSetup, line)
         number = args.number
         # First, republish the question
 
@@ -162,7 +162,7 @@ class HomeworkMagics(RMagics):
         and a string named "question_text"
         """
        
-        args = parse_argstring(self.MultipleChoiceSetup, line)
+        args = parse_argstring(self.MultipleChoiceQuestion, line)
         number = args.number
 
         self.shell.ex(cell)
