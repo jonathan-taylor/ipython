@@ -165,7 +165,7 @@ var IPython = (function (IPython) {
             'clear_output': $.proxy(this.output_area.handle_clear_output, this.output_area),
             'set_next_input': $.proxy(this._handle_set_next_input, this)
         };
-        var msg_id = this.kernel.execute(this.get_text(), callbacks, {silent: false});
+        var msg_id = this.kernel.execute("%load_ext rmagic\nget_ipython().run_cell_magic(\'R\',None,\'\'\' " + this.get_text() + "\'\'\')", callbacks, {silent: false});
     };
 
 
